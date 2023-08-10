@@ -3,7 +3,7 @@ using Persistence.Interfaces;
 
 namespace Persistence.Repositories;
 
-public class UserRepository : IBaseRepository
+public class UserRepository : IUserRepository
 {
     private readonly IChatDbContext _context;
 
@@ -31,6 +31,7 @@ public class UserRepository : IBaseRepository
         };
 
         _context.Users.Add(newUser);
+        SaveChanges();
         return true;
     }
 
@@ -41,6 +42,7 @@ public class UserRepository : IBaseRepository
         {
             existingUser.ConnectionId = connectionId;
         }
+        SaveChanges();
     }
 
     public string GetUserByConnectionId(string connectionId)
@@ -59,6 +61,7 @@ public class UserRepository : IBaseRepository
     {
         var user = _context.Users.FirstOrDefault(x => x.Name == userName);
         _context.Users.Remove(user);
+        SaveChanges();
     }
 
     public string[] GetOnlineUsers()
@@ -66,7 +69,7 @@ public class UserRepository : IBaseRepository
         return _context.Users.OrderBy(x => x.Name).Select(x => x.Name).ToArray();
     }
 
-    public void Save()
+    public void SaveChanges()
     {
         _context.SaveChangesAsync(CancellationToken.None);
     }

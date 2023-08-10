@@ -1,6 +1,6 @@
 ﻿using Chat.Api.Dtos;
-using Chat.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using Persistence.Interfaces;
 
 namespace Chat.Api.Controllers;
 
@@ -8,22 +8,30 @@ namespace Chat.Api.Controllers;
 [ApiController]
 public class ChatController : Controller
 {
-    private readonly ChatService _chatService;
+    private readonly IUserRepository _userRepository;
     
-    public ChatController(ChatService chatService)
+    public ChatController(IUserRepository repository)
     {
-        _chatService = chatService;
+        _userRepository = repository;
     }
 
     [HttpPost("register-user")]
     public IActionResult RegisterUser(UserDto model)
     {
-        if (_chatService.AddUserToList(model.Name))
+        if (_userRepository.AddUser(model.Name))
         {
-            // 204 status code
+            //204 status code
             return NoContent();
         }
-
+        
         return BadRequest("This name is taken. Please, choose another one");
+        
+        // if (_chatService.AddUserToList(model.Name))
+        // {
+        //     // 204 status code
+        //     return NoContent();
+        // }
+        //
+        // return BadRequest("This name is taken. Please, choose another one");
     }
 }

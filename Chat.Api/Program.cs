@@ -1,8 +1,9 @@
 using Chat.Api.Hubs;
-using Chat.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
+using Persistence.Interfaces;
+using Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSingleton<ChatService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 
