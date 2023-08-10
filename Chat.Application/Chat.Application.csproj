@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Chat.Domain\Chat.Domain.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Folder Include="Chat\Commands\AddUserConnectionId\" />
+      <Folder Include="Chat\Commands\AddUser\" />
+      <Folder Include="Chat\Commands\RemoveUser\" />
+      <Folder Include="Chat\Queries\GetConnectionIdByUser\" />
+      <Folder Include="Chat\Queries\GetOnlineUsers\" />
+      <Folder Include="Chat\Queries\GetUserByConnectionId\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.1.1" />
+    </ItemGroup>
+
+</Project>

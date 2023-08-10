@@ -1,0 +1,17 @@
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Persistence.deps.json
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Persistence.dll
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Persistence.pdb
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Application.dll
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Domain.dll
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Application.pdb
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\bin\Debug\net7.0\Chat.Domain.pdb
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.csproj.AssemblyReference.cache
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.AssemblyInfoInputs.cache
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.AssemblyInfo.cs
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.csproj.CopyComplete
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.dll
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\refint\Chat.Persistence.dll
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\Chat.Persistence.pdb
+C:\Users\1dark\RiderProjects\Requiem.Chat\Chat.Persistence\obj\Debug\net7.0\ref\Chat.Persistence.dll
