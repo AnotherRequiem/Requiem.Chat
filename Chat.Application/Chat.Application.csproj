@@ -11,14 +11,6 @@
     </ItemGroup>
 
 
-    <ItemGroup>
-      <Folder Include="Chat\Commands\AddUserConnectionId\" />
-      <Folder Include="Chat\Commands\AddUser\" />
-      <Folder Include="Chat\Commands\RemoveUser\" />
-      <Folder Include="Chat\Queries\GetConnectionIdByUser\" />
-      <Folder Include="Chat\Queries\GetOnlineUsers\" />
-      <Folder Include="Chat\Queries\GetUserByConnectionId\" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="MediatR" Version="12.1.1" />

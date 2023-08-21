@@ -11,6 +11,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(us => us.Id);
         builder.HasIndex(us => us.Id).IsUnique();
         builder.Property(us => us.Name).IsRequired().HasMaxLength(15);
-        builder.HasMany(us => us.PrivateMessages).WithOne(us => us.User).HasForeignKey(ms => ms.UserId);
     }
 }

@@ -2,15 +2,15 @@
 
 public interface IUserRepository : IBaseRepository
 {
-    public bool AddUser(string userName);
+    bool AddUser(string userName);
     
-    public void AddUserConnectionId(string userName, string connectionId);
+    void AddUserConnectionId(string userName, string connectionId);
     
-    public string GetUserByConnectionId(string connectionId);
+    string GetUserByConnectionId(string connectionId);
     
-    public string GetConnectionIdByUser(string userName);
+    string GetConnectionIdByUser(string userName);
     
-    public void RemoveUser(string userName);
+    void RemoveUser(string userName);
     
-    public string[] GetOnlineUsers();
+    string[] GetOnlineUsers();
 }

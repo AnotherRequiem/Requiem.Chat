@@ -8,11 +8,13 @@ namespace Chat.Api.Hubs;
 
 public class ChatHub : Hub
 {
-    private readonly IUserRepository _repository;
+    private readonly IUserRepository _userRepository;
+    private readonly IMessageRepository _messageRepository;
     
-    public ChatHub(IUserRepository repository)
+    public ChatHub(IUserRepository userUserRepository, IMessageRepository messageRepository)
     {
-        _repository = repository;
+        _userRepository = userUserRepository;
+        _messageRepository = messageRepository;
     }
 
     public override async Task OnConnectedAsync()
@@ -24,8 +26,8 @@ public class ChatHub : Hub
     public override async Task OnDisconnectedAsync(Exception exception)
     {
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, "RequiemChat");
-        var user = _repository.GetUserByConnectionId(Context.ConnectionId);
-        _repository.RemoveUser(user);
+        var user = _userRepository.GetUserByConnectionId(Context.ConnectionId);
+        _userRepository.RemoveUser(user);
         await DisplayOnlineUsers();
         
         await base.OnDisconnectedAsync(exception);
@@ -33,7 +35,7 @@ public class ChatHub : Hub
 
     public async Task AddUserConnectionId(string name)
     {
-        _repository.AddUserConnectionId(name, Context.ConnectionId);
+        _userRepository.AddUserConnectionId(name, Context.ConnectionId);
         await DisplayOnlineUsers();
     }
 
@@ -44,35 +46,35 @@ public class ChatHub : Hub
 
     public async Task CreatePrivateChat(MessageDto message)
     {
-        string privateGroupName = GetPrivateGroupName(message.From, message.To);
+        var privateGroupName = GetPrivateGroupName(message.From, message.To);
         await Groups.AddToGroupAsync(Context.ConnectionId, privateGroupName);
-        var toConnectionId = _repository.GetConnectionIdByUser(message.To);
+        var toConnectionId = _userRepository.GetConnectionIdByUser(message.To);
         await Groups.AddToGroupAsync(toConnectionId, privateGroupName);
-
+        
+        _messageRepository.AddPrivateMessage(message.From, message.To, message.Content);
+        
         await Clients.Client(toConnectionId).SendAsync("OpenPrivateChat", message);
     }
 
     public async Task ReceivePrivateMessage(MessageDto message)
     {
-        string privateGroupName = GetPrivateGroupName(message.From, message.To);
+        var privateGroupName = GetPrivateGroupName(message.From, message.To);
         await Clients.Group(privateGroupName).SendAsync("NewPrivateMessage", message);
     }
 
     public async Task RemovePrivateChat(string from, string to)
     {
-        string privateGroupName = GetPrivateGroupName(from, to);
+        var privateGroupName = GetPrivateGroupName(from, to);
         await Clients.Group(privateGroupName).SendAsync("ClosePrivateChat");
 
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, privateGroupName);
-        var toConnectionId = _repository.GetConnectionIdByUser(to);
-        //var toConnectionId = _chatService.GetConnectionIdByUser(to);
+        var toConnectionId = _userRepository.GetConnectionIdByUser(to);
         await Groups.RemoveFromGroupAsync(toConnectionId, privateGroupName);
     }
 
     private async Task DisplayOnlineUsers()
     {
-        var onlineUsers = _repository.GetOnlineUsers();
-        //var onlineUsers = _chatService.GetOnlineUsers();
+        var onlineUsers = _userRepository.GetOnlineUsers();
         await Clients.Group("RequiemChat").SendAsync("OnlineUsers", onlineUsers);
     }
 

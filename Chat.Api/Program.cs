@@ -13,6 +13,7 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 
